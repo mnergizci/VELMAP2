@@ -113,9 +113,9 @@ if par.reload_sboi
         fprintf('===> loading sboi data ...\n');
         [sboi]=loadlics_sboi(sboipar);  %load insar data in lics format
         nsboi = length(sboi);
-        for i = 1:nsboi
-              sboi(i).azi = sboi(i).azi + 180;
-        end
+%         for i = 1:nsboi
+%               sboi(i).azi = sboi(i).azi + 180;
+%         end
 
     else
         fprintf('===> no insar data to load...\n');
@@ -169,7 +169,7 @@ for i=1:nsmf
   n_insar = length(insar);
 
   outdir = sprintf('%s_%s_%s_sbois%d_insars%d_%s_%s_%s_%s/', ...
-    char(par.outdir), smf_str,'adding180',n_sboi, n_insar, ...
+    char(par.outdir), smf_str,'no_adding180',n_sboi, n_insar, ...
     orb_str, atm_str, lk_str, mesh_str);
 
   if ~exist(outdir,'dir')
@@ -326,6 +326,7 @@ for i=1:nsmf
     end
     %plot_vel_strain
     myplot_vel_strain(outdir)
+    myplot_vel_std(outdir)
 
     %% 12. Return full resolution LiCSBAS output
     %post_process_full_res(outdir)

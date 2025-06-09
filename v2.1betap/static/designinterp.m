@@ -41,6 +41,14 @@ for i=1:ninsar
     end
     [uvi]=unitvec(insar(i).los,insar(i).azi);
     uvec=[uvec;uvi];  %e/n/u
+    % Calculate non-NaN means
+    mean_e = mean(uvi(~isnan(uvi(:,1)), 1));
+    mean_n = mean(uvi(~isnan(uvi(:,2)), 2));
+    mean_u = mean(uvi(~isnan(uvi(:,3)), 3));
+
+    % Print results
+    fprintf('Track ID: %s\n', insar(i).proc.ID);
+    fprintf('  Mean E: %.4f, Mean N: %.4f, Mean U: %.4f\n', mean_e, mean_n, mean_u);    
 end
 
 disp('making interpolation kernel');

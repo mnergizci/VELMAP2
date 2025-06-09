@@ -123,6 +123,7 @@ end
     % calculate incidence angle and azimuth from components
     insar(i).los=acosd(u);
     insar(i).azi=atan2d(e,n)+180;
+%     insar(i).azi=atan2d(e,n);
     %  insar(i).uvec(:,1)=reshape(e',[],1);
     %  insar(i).uvec(:,2)=reshape(n',[],1);
     %  insar(i).uvec(:,3)=reshape(u',[],1);

@@ -86,7 +86,7 @@ end
 %first enu
 [egrid,ngrid,ugrid] = format_vel(vel,meshspacing);
 %std
-[estdgrid,nstdgrid,usdtgrid] = format_std(vel,meshspacing);
+[estdgrid,nstdgrid,ustdgrid] = format_std(vel,meshspacing);
 
 %second enu
 if plot_diff
@@ -128,6 +128,24 @@ if ~plot_diff
     clim_u = round([prctile(data_flat_u, 1) prctile(data_flat_u, 99)]);
     %%%%
     
+    %%%%%%%
+    % East std
+    data_flat_estd = estdgrid(:);
+    data_flat_estd = data_flat_estd(~isnan(data_flat_estd));
+    clim_estd = round([prctile(data_flat_estd, 1) prctile(data_flat_estd, 99)]);
+    
+    % North std
+    data_flat_nstd = nstdgrid(:);
+    data_flat_nstd = data_flat_nstd(~isnan(data_flat_nstd));
+    clim_nstd = round([prctile(data_flat_nstd, 1) prctile(data_flat_nstd, 99)]);
+    
+    % Up std
+    data_flat_ustd = ustdgrid(:);
+    data_flat_ustd = data_flat_ustd(~isnan(data_flat_ustd));
+    clim_ustd = round([prctile(data_flat_ustd, 1) prctile(data_flat_ustd, 99)]);
+    %%%%
+    
+    
     
     figure()
     tiledlayout(2,3,'TileSpacing','compact')
@@ -151,31 +169,51 @@ if ~plot_diff
     plt_data(lon_grid,lat_grid,ugrid,gps,strainmap.lonlims,strainmap.latlims,clim_u,borders,places,'Up vel (mm/yr)', faults, 1)%, poly)
     colormap(ax, vik)
     
+    
+    %%%%%std
     ax = nexttile; hold on
-    % plt_data(lon,lat,msgrid,gps,strainmap.lonlims,strainmap.latlims,clim_straim,borders,places,...
-    %     'Max shear (/yr)', faults)%, poly)
+    % plt_data(lon,lat,egrid,gps,strainmap.lonlims,strainmap.latlims,[-15 15],borders,places,'East vel (mm/yr)', faults, poly)
     %JF
-    plt_data(lon_grid,lat_grid,msgrid,gps,strainmap.lonlims,strainmap.latlims,clim_straim,borders,places,...
-        'Max shear (/yr)', faults, 0)%, poly)
-    % colormap(ax, acton)
-    colormap(ax, lajolla)
+    plt_data(lon_grid,lat_grid,estdgrid,gps,strainmap.lonlims,strainmap.latlims,clim_estd,borders,places,'East std (mm/yr)', faults, 0)%, poly)
+%     colormap(ax, acton)
     
     ax = nexttile; hold on
-    % plt_data(lon,lat,i2grid,gps,strainmap.lonlims,strainmap.latlims,clim_straim,borders,places,...
-    %     'Second invariant of strain rate (/yr)', faults)%, poly)
+    % plt_data(lon,lat,ngrid,gps,strainmap.lonlims,strainmap.latlims,[-30, 30],borders,places,'North vel (mm/yr)', faults)%, poly)
     %JF
-    plt_data(lon_grid,lat_grid,i2grid,gps,strainmap.lonlims,strainmap.latlims,clim_straim,borders,places,...
-        'Second invariant of strain rate (/yr)', faults, 0)%, poly)
-    % colormap(ax, acton)
-    colormap(ax, lajolla)
+    plt_data(lon_grid,lat_grid,nstdgrid,gps,strainmap.lonlims,strainmap.latlims,clim_nstd,borders,places,'North std (mm/yr)', faults, 0)%, poly)
+%     colormap(ax, acton)
     
     ax = nexttile; hold on
-    % plt_data(lon,lat,digrid,gps,strainmap.lonlims,strainmap.latlims,[-1e-7, 1e-7],borders,places,...
-    %     'Dilatation (/yr)', faults)%, poly)
+    % plt_data(lon,lat,ugrid,gps,strainmap.lonlims,strainmap.latlims,[-15, 15],borders,places,'Up vel (mm/yr)', faults)%, poly)
     %JF
-    plt_data(lon_grid,lat_grid,digrid,gps,strainmap.lonlims,strainmap.latlims,[-1e-7, 1e-7],borders,places,...
-        'Dilatation (/yr)', faults, 0)%, poly)
-    colormap(ax, bam)
+    plt_data(lon_grid,lat_grid,ustdgrid,gps,strainmap.lonlims,strainmap.latlims,clim_ustd,borders,places,'Up std (mm/yr)', faults, 0)%, poly)
+%     colormap(ax, acton)
+    
+%     ax = nexttile; hold on
+%     % plt_data(lon,lat,msgrid,gps,strainmap.lonlims,strainmap.latlims,clim_straim,borders,places,...
+%     %     'Max shear (/yr)', faults)%, poly)
+%     %JF
+%     plt_data(lon_grid,lat_grid,msgrid,gps,strainmap.lonlims,strainmap.latlims,clim_straim,borders,places,...
+%         'Max shear (/yr)', faults, 0)%, poly)
+%     % colormap(ax, acton)
+%     colormap(ax, lajolla)
+%     
+%     ax = nexttile; hold on
+%     % plt_data(lon,lat,i2grid,gps,strainmap.lonlims,strainmap.latlims,clim_straim,borders,places,...
+%     %     'Second invariant of strain rate (/yr)', faults)%, poly)
+%     %JF
+%     plt_data(lon_grid,lat_grid,i2grid,gps,strainmap.lonlims,strainmap.latlims,clim_straim,borders,places,...
+%         'Second invariant of strain rate (/yr)', faults, 0)%, poly)
+%     % colormap(ax, acton)
+%     colormap(ax, lajolla)
+%     
+%     ax = nexttile; hold on
+%     % plt_data(lon,lat,digrid,gps,strainmap.lonlims,strainmap.latlims,[-1e-7, 1e-7],borders,places,...
+%     %     'Dilatation (/yr)', faults)%, poly)
+%     %JF
+%     plt_data(lon_grid,lat_grid,digrid,gps,strainmap.lonlims,strainmap.latlims,[-1e-7, 1e-7],borders,places,...
+%         'Dilatation (/yr)', faults, 0)%, poly)
+%     colormap(ax, bam)
     
     %% plot strains
     
@@ -187,7 +225,7 @@ if ~plot_diff
     sgtitle(strrep(outdir, '_', ' ')) 
     
     %saveas(gcf,outdir+'/vel_strain.png');
-    saveas(gcf,strcat(outdir,'vel_strain.png'));
+    saveas(gcf,strcat(outdir,'vel_std.png'));
 end 
 %% if second input exists, plot differences
 if plot_diff
