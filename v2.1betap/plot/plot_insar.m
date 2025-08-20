@@ -99,8 +99,8 @@ clim_asc = [cmin_asc cmax_asc];
 clim_desc = [cmin_desc cmax_desc];
 
 if pngfile == "model_los.png"
-    clim_asc = [-20 20];
-    clim_desc = [-20 20];
+    clim_asc = [-100 100];
+    clim_desc = [-100 100];
 end 
 
 % clim_asc = [-20 20];

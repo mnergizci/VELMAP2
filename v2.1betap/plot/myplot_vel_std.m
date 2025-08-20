@@ -7,7 +7,7 @@
 % Andrew Watson @ leeds, 12/07/2021
 % Qi Ou @ leeds, 23/06/2023 
 % Jin Fang @ Leeds, 23/11/2024
-% Muhammet Nergizci @ leeds, 26/04/2025
+% Muhammet Nergizci @ leeds, 26/04/2025meshspacing
 %=================================================================
 
 function myplot_vel_strain(outdir, gps, outdir2)
@@ -40,7 +40,7 @@ if plot_diff
 end
 
 % parameters
-meshspacing = 0.05;
+meshspacing = 0.01;
 places = {'China', 'Kazakhstan', 'Kyrgyzstan', 'Uzbekistan', 'Tajikistan'}; % to plot
 
 %% load inputs
@@ -96,6 +96,16 @@ end
 % JF
 lon_grid = linspace(min(lon), max(lon), size(egrid, 2)); 
 lat_grid = linspace(min(lat), max(lat), size(egrid, 1));
+
+
+%% saving them as xyz format for future
+[LonGrid,LatGrid] = meshgrid(lon_grid, lat_grid);
+vn_xyz    = [LonGrid(:), LatGrid(:), ngrid(:)];
+vnstd_xyz = [LonGrid(:), LatGrid(:), nstdgrid(:)];
+
+save(fullfile(outdir,'vn.xyz'),     'vn_xyz',    '-ASCII');
+save(fullfile(outdir,'vn_std.xyz'), 'vnstd_xyz', '-ASCII');
+
 
 %% format strain
 %first strain

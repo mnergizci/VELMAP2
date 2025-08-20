@@ -40,7 +40,7 @@ if plot_diff
 end
 
 % parameters
-meshspacing = 0.05;
+meshspacing = 0.01;
 places = {'China', 'Kazakhstan', 'Kyrgyzstan', 'Uzbekistan', 'Tajikistan'}; % to plot
 
 %% load inputs
