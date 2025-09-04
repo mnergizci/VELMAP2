@@ -197,7 +197,8 @@ if par.procmode == 2
   tssmpar.t0 = datenum(num2str(tssmpar.t0),'yyyymmdd'); %serial days
   tssmpar.dt = getparval(cfgcell,'tsdt');   %in days
   tssmpar.smf = getparval(cfgcell,'tssmfactor'); 
-  tssmpar.smorder = getparval(cfgcell,'tssmorder',2); 
+  tssmpar.smorder = getparval(cfgcell,'tssmorder',2);
+  tssmpar.mode    = string(getparval(cfgcell,'tssmpar_mode'));
   
   if tssmpar.smf==0 || tssmpar.smf==999
     tssmpar.smf_min = getparval(cfgcell,'tssmf_min');

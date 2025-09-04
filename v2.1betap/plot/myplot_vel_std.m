@@ -103,9 +103,20 @@ lat_grid = linspace(min(lat), max(lat), size(egrid, 1));
 vn_xyz    = [LonGrid(:), LatGrid(:), ngrid(:)];
 vnstd_xyz = [LonGrid(:), LatGrid(:), nstdgrid(:)];
 
+ve_xyz    = [LonGrid(:), LatGrid(:), egrid(:)];
+vestd_xyz = [LonGrid(:), LatGrid(:), estdgrid(:)];
+
+vu_xyz    = [LonGrid(:), LatGrid(:), ugrid(:)];
+vustd_xyz = [LonGrid(:), LatGrid(:), ustdgrid(:)];
+
 save(fullfile(outdir,'vn.xyz'),     'vn_xyz',    '-ASCII');
 save(fullfile(outdir,'vn_std.xyz'), 'vnstd_xyz', '-ASCII');
 
+save(fullfile(outdir,'ve.xyz'),     've_xyz',    '-ASCII');
+save(fullfile(outdir,'ve_std.xyz'), 'vestd_xyz', '-ASCII');
+
+save(fullfile(outdir,'vu.xyz'),     'vu_xyz',    '-ASCII');
+save(fullfile(outdir,'vu_std.xyz'), 'vustd_xyz', '-ASCII');
 
 %% format strain
 %first strain
