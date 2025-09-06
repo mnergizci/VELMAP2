@@ -355,10 +355,14 @@ for i=1:nsmf
     if insarpar.ninsarfile~=0
         if insarpar.activate > 0
             plot_insar(insarfit,gps, outdir, 'model_los.png');
+            plot_insar_double(insarfit,gps, outdir, 'model_los.png');
+            plot_insar_fourpanel(insarfit,gps, outdir, 'model_los.png');
             dump_insarfit(insarfit, insar, outdir);
         end
         if sboipar.activate > 0
             plot_insar(sboifit, gps, outdir, 'model_azi.png');
+            plot_insar_double(sboifit, gps, outdir, 'model_azi.png');
+            plot_insar_fourpanel(sboifit, gps, outdir, 'model_azi.png');
             dump_insarfit(sboifit, sboi, outdir, 'sboifit');
         end
     end
