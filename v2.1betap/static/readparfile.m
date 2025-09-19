@@ -167,7 +167,7 @@ sboipar.invenu = [getparval(cfgcell,'inv_e',1)...
 % the exact region will be calculated by 10^(smf)
 % lcurve_lksx/lksy: looks number for L-curve calculation
 
-smpar.smf = getparval(cfgcell,'smfactor');
+smpar.smf = getparval(cfgcell,'smfactor', 0);
 
 if smpar.smf == 0 || smpar.smf == 999
   smpar.smf_min = getparval(cfgcell,'smf_min');

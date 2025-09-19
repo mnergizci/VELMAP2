@@ -5,7 +5,7 @@
 %=================================================================
 
 function post_process_full_res(outdirfile)
-
+tic
 %% Load inputs
 
 % Construct full path to the file
@@ -178,6 +178,6 @@ function write_map(folder, filename, grid, R)
     geotiffwrite(outpath, grid, R);
 end
 
-
+toc
 end
 
