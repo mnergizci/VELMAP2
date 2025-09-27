@@ -98,14 +98,14 @@ if exist('insarfit1lk', 'var')
 
         % Write outputs using frame_id in filenames
         write_map(insar_out_dir, [frame_id, '.vel_filt.mskd.eurasia.geo.tif'], -1 * (fit.ratemap + fit.resmap), R);
-        write_map(insar_out_dir, [frame_id, '.vstd_scaled.geo.tif'], vstd, R);
-        if isfield(fit, 'orbmap') && ~isempty(fit.orbmap)
-            write_map(insar_out_dir, [frame_id, '_orbmap.tif'], fit.orbmap, R);
-        end
-        if isfield(fit, 'atmmap') && ~isempty(fit.atmmap)
-            write_map(insar_out_dir, [frame_id, '_atmmap.tif'], fit.atmmap, R);
-        end
-        write_map(insar_out_dir, [frame_id, '_resmap.tif'], -1 * fit.resmap, R);
+        % write_map(insar_out_dir, [frame_id, '.vstd_scaled.geo.tif'], vstd, R);
+        % if isfield(fit, 'orbmap') && ~isempty(fit.orbmap)
+        %     write_map(insar_out_dir, [frame_id, '_orbmap.tif'], fit.orbmap, R);
+        % end
+        % if isfield(fit, 'atmmap') && ~isempty(fit.atmmap)
+        %     write_map(insar_out_dir, [frame_id, '_atmmap.tif'], fit.atmmap, R);
+        % end
+        % write_map(insar_out_dir, [frame_id, '_resmap.tif'], -1 * fit.resmap, R);
         write_map(insar_out_dir, [frame_id, '_modelmap.tif'], -1 * fit.ratemap, R);
     end
 end
@@ -159,16 +159,16 @@ if exist('sboifit1lk', 'var')
         end
 
         write_map(sboi_out_dir, [frame_id, '.vel_filt.mskd.eurasia.geo.tif'], grid, R);
-        write_map(sboi_out_dir, [frame_id, '.vstd_scaled.geo.tif'], vstd, R);
-
-        if isfield(fit, 'orbmap') && ~isempty(fit.orbmap)
-            write_map(sboi_out_dir, [frame_id, '_orbmap.tif'], fit.orbmap, R);
-        end
-        if isfield(fit, 'atmmap') && ~isempty(fit.atmmap)
-            write_map(sboi_out_dir, [frame_id, '_atmmap.tif'], fit.atmmap, R);
-        end
-
-        write_map(sboi_out_dir, [frame_id, '_resmap.tif'], -1 * fit.resmap, R);
+        % write_map(sboi_out_dir, [frame_id, '.vstd_scaled.geo.tif'], vstd, R);
+        % 
+        % if isfield(fit, 'orbmap') && ~isempty(fit.orbmap)
+        %     write_map(sboi_out_dir, [frame_id, '_orbmap.tif'], fit.orbmap, R);
+        % end
+        % if isfield(fit, 'atmmap') && ~isempty(fit.atmmap)
+        %     write_map(sboi_out_dir, [frame_id, '_atmmap.tif'], fit.atmmap, R);
+        % end
+        % 
+        % write_map(sboi_out_dir, [frame_id, '_resmap.tif'], -1 * fit.resmap, R);
         write_map(sboi_out_dir, [frame_id, '_modelmap.tif'], -1 * fit.ratemap, R);
     end
 end
