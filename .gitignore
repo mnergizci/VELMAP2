@@ -7,3 +7,8 @@ v2.1betap_updated1/
 /nfs/a1/eemne/VELMAP/examples/TR_inter_with_sboi2/range*
 examples/TR_postseismic_cum/output*
 examples/TR_postseismic_ts*
+examples/TR_interseismic*
+examples/TR_interseismic/*
+examples/TR_postseismic_cum-18092025/
+*tif
+examples/TR_postseismic_cum-19102025/

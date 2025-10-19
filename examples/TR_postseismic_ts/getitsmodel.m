@@ -1,1 +1,0 @@
-/nfs/a1/eemne/VELMAP/v2.1betap/ts/getitsmodel.m
