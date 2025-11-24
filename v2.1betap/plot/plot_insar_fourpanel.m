@@ -16,7 +16,7 @@ if nargin < 4 || isempty(pngfile)
 end
 
 % parameters
-clim = [-20 20];
+% clim = [-20 20];
 places = [];%{'Iran Islamic Republic of','Iraq','Afghanistan','Turkey'}
 bordersfile = []; %'borderdata.mat';
 
@@ -79,11 +79,32 @@ desc_ind = strcmp(passdir, 'D');
 % ----------------------------------------------------------------
 [clim_asc, clim_desc] = get_clims(refmap, asc_ind, desc_ind);
 
-% If original default output name, force symmetric ±20 mm/yr like before
-if strcmp(pngfile, "model_los.png")
-    clim_asc  = [-20 20];
-    clim_desc = [-20 20];
+% % If original default output name, force symmetric ±20 mm/yr like before
+% if strcmp(pngfile, "model_los.png")
+%     clim_asc  = [-20 20];
+%     clim_desc = [-20 20];
+% end
+%% colorbar limits
+ratemap_asc = [];
+ratemap_desc = [];
+for ii = 1:length(ratemap)
+    if asc_ind(ii)
+        ratemap_asc = [ratemap_asc; ratemap{ii}(:)];
+    elseif desc_ind(ii)
+        ratemap_desc = [ratemap_desc; ratemap{ii}(:)];
+    end
 end
+
+ratemap_asc = ratemap_asc(~isnan(ratemap_asc));
+ratemap_desc = ratemap_desc(~isnan(ratemap_desc));
+
+cmin_asc = round(prctile(ratemap_asc,1));
+cmax_asc = round(prctile(ratemap_asc,99));
+cmin_desc = round(prctile(ratemap_desc,1));
+cmax_desc = round(prctile(ratemap_desc,99));
+
+clim_asc = [cmin_asc cmax_asc];
+clim_desc = [cmin_desc cmax_desc];
 
 % ----------------------------------------------------------------
 % Axes limits

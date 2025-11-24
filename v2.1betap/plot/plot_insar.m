@@ -77,31 +77,31 @@ asc_ind = strcmp(passdir,'A');
 desc_ind = strcmp(passdir,'D');
 
 %% colorbar limits
-refmap_asc = [];
-refmap_desc = [];
-for ii = 1:length(refmap)
+ratemap_asc = [];
+ratemap_desc = [];
+for ii = 1:length(ratemap)
     if asc_ind(ii)
-        refmap_asc = [refmap_asc; refmap{ii}(:)];
+        ratemap_asc = [ratemap_asc; ratemap{ii}(:)];
     elseif desc_ind(ii)
-        refmap_desc = [refmap_desc; refmap{ii}(:)];
+        ratemap_desc = [ratemap_desc; ratemap{ii}(:)];
     end
 end
 
-refmap_asc = refmap_asc(~isnan(refmap_asc));
-refmap_desc = refmap_desc(~isnan(refmap_desc));
+ratemap_asc = ratemap_asc(~isnan(ratemap_asc));
+ratemap_desc = ratemap_desc(~isnan(ratemap_desc));
 
-cmin_asc = round(prctile(refmap_asc,1));
-cmax_asc = round(prctile(refmap_asc,99));
-cmin_desc = round(prctile(refmap_desc,1));
-cmax_desc = round(prctile(refmap_desc,99));
+cmin_asc = round(prctile(ratemap_asc,1));
+cmax_asc = round(prctile(ratemap_asc,99));
+cmin_desc = round(prctile(ratemap_desc,1));
+cmax_desc = round(prctile(ratemap_desc,99));
 
 clim_asc = [cmin_asc cmax_asc];
 clim_desc = [cmin_desc cmax_desc];
 
-if pngfile == "model_los.png"
-    clim_asc = [-100 100];
-    clim_desc = [-100 100];
-end 
+% if pngfile == "model_los.png"
+%     clim_asc = [-100 100];
+%     clim_desc = [-100 100];
+% end 
 
 % clim_asc = [-20 20];
 % clim_desc = [-20 20];
