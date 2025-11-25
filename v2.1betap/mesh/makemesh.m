@@ -29,7 +29,7 @@ outlinefile = '/nfs/a285/homes/eearw/velmap_projects/mesh/outline.txt';
 % outfile = 'mesh/mesh.mat';
 
 % x limits and intervals for full and low res mesh
-xmin = 31.5; %24.5
+xmin = 30; %24.5
 xmax = 45; %45.5
 % dx = 1;
 dxlow = 2;
