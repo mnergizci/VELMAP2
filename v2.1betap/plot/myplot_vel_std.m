@@ -97,6 +97,14 @@ end
 lon_grid = linspace(min(lon), max(lon), size(egrid, 2)); 
 lat_grid = linspace(min(lat), max(lat), size(egrid, 1));
 
+%% format strain
+%first strain
+[strainmap,digrid,ssgrid,msgrid,i2grid] = format_strain(strain,meshspacing);
+%second strain
+if plot_diff
+    [strainmap2,digrid2,ssgrid2,msgrid2,i2grid2] = format_strain(strain2,meshspacing);
+end
+
 
 %% saving them as xyz format for future
 [LonGrid,LatGrid] = meshgrid(lon_grid, lat_grid);
@@ -109,6 +117,10 @@ vestd_xyz = [LonGrid(:), LatGrid(:), estdgrid(:)];
 vu_xyz    = [LonGrid(:), LatGrid(:), ugrid(:)];
 vustd_xyz = [LonGrid(:), LatGrid(:), ustdgrid(:)];
 
+maxshear_xyz = [LonGrid(:), LatGrid(:), msgrid(:)];
+i2_xyz       = [LonGrid(:), LatGrid(:), i2grid(:)];
+dilat_xyz    = [LonGrid(:), LatGrid(:), digrid(:)];
+
 save(fullfile(outdir,'vn.xyz'),     'vn_xyz',    '-ASCII');
 save(fullfile(outdir,'vn_std.xyz'), 'vnstd_xyz', '-ASCII');
 
@@ -118,14 +130,9 @@ save(fullfile(outdir,'ve_std.xyz'), 'vestd_xyz', '-ASCII');
 save(fullfile(outdir,'vu.xyz'),     'vu_xyz',    '-ASCII');
 save(fullfile(outdir,'vu_std.xyz'), 'vustd_xyz', '-ASCII');
 
-%% format strain
-%first strain
-[strainmap,digrid,ssgrid,msgrid,i2grid] = format_strain(strain,meshspacing);
-%second strain
-if plot_diff
-    [strainmap2,digrid2,ssgrid2,msgrid2,i2grid2] = format_strain(strain2,meshspacing);
-end
-
+save(fullfile(outdir,'max_shear.xyz'), 'maxshear_xyz', '-ASCII');
+save(fullfile(outdir,'second_inv.xyz'), 'i2_xyz', '-ASCII');
+save(fullfile(outdir,'dilatation.xyz'), 'dilat_xyz', '-ASCII');
 
 %% plot vels
 
